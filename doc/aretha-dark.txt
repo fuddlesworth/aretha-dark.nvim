@@ -1,0 +1,375 @@
+*aretha-dark.txt*      For Neovim >= 0.8.0      Last change: 2026 February 24
+
+==============================================================================
+Table of Contents                              *aretha-dark-table-of-contents*
+
+  - Installation                                *aretha-dark-installation*
+  - Configuration                                *aretha-dark-configuration*
+  - Lazy Loading                                *aretha-dark-lazy-loading*
+  - Plugin Support                            *aretha-dark-plugin-support*
+  - Customization                              *aretha-dark-customization*
+  - Commands                                      *aretha-dark-commands*
+  - Palette Reference                      *aretha-dark-palette-reference*
+  - License                                        *aretha-dark-license*
+
+
+  Aretha Dark is a dark blue Neovim colorscheme based on the Aretha Plasma
+  KDE color scheme.
+
+
+INSTALLATION                                        *aretha-dark-installation*
+
+Using lazy.nvim <https://github.com/folke/lazy.nvim>:
+
+>lua
+    {
+      "nlavender/aretha-dark.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        require("aretha-dark").setup()
+        vim.cmd.colorscheme("aretha-dark")
+      end,
+    }
+<
+
+Using packer.nvim <https://github.com/wbthomason/packer.nvim>:
+
+>lua
+    use {
+      "nlavender/aretha-dark.nvim",
+      config = function()
+        require("aretha-dark").setup()
+        vim.cmd.colorscheme("aretha-dark")
+      end
+    }
+<
+
+
+CONFIGURATION                                      *aretha-dark-configuration*
+
+>lua
+    require("aretha-dark").setup({
+      transparent_background = false,
+      terminal_colors = true,
+      devicons = false,
+      styles = {
+        comment = { italic = true },
+        keyword = { italic = true },
+        type = { italic = true },
+        storageclass = { italic = true },
+        structure = { italic = true },
+        parameter = { italic = true },
+        annotation = { italic = true },
+        tag_attribute = { italic = true },
+      },
+      inc_search = "background", -- underline | background
+      background_clear = {
+        "toggleterm",
+        "telescope",
+        "renamer",
+        "notify",
+      },
+      plugins = {
+        bufferline = {
+          underline_selected = false,
+          underline_visible = false,
+          underline_fill = false,
+          bold = true,
+        },
+        indent_blankline = {
+          context_highlight = "default", -- default | pro
+          context_start_underline = false,
+        },
+      },
+      override = function(scheme)
+        return {}
+      end,
+      override_palette = function(filter)
+        return {}
+      end,
+      override_scheme = function(scheme, palette, colors)
+        return {}
+      end,
+    })
+<
+
+
+LAZY LOADING                                        *aretha-dark-lazy-loading*
+
+Plugin highlights can be lazy-loaded to reduce initial colorscheme load time.
+Highlights are applied when:
+
+- **Event-based**: A Vim event fires (e.g., `VimEnter`, `FileType`)
+- **Module-based**: A module is required (e.g., `require("telescope")`)
+
+
+HOW IT WORKS ~
+
+Each plugin spec can define a `lazy` field:
+
+>lua
+    -- Eager loading (default)
+    { name = "treesitter", lazy = false }
+    
+    -- Lazy loading on module require
+    { name = "telescope", lazy = { module = "telescope" } }
+    
+    -- Lazy loading on event
+    { name = "dashboard", lazy = { event = "VimEnter" } }
+    
+    -- Both triggers
+    { name = "neo-tree", lazy = { module = "neo-tree", event = "FileType neo-tree" } }
+<
+
+
+CHECK APPLIED PLUGINS ~
+
+>lua
+    :lua print(vim.inspect(require("aretha-dark.theme.triggers").applied_plugins))
+<
+
+
+DISABLE SPECIFIC PLUGINS ~
+
+>lua
+    require("aretha-dark").setup({
+      disabled_plugins = { "bufferline", "neo-tree" },
+    })
+<
+
+
+PLUGIN SUPPORT                                    *aretha-dark-plugin-support*
+
+33 plugins supported ~
+
+  -----------------------------------------------------------------------
+  Plugin                    Lazy Loading
+  ------------------------- ---------------------------------------------
+  aerial.nvim               module
+
+  alpha-nvim                module
+
+  blink.cmp                 module
+
+  bufferline.nvim           module
+
+  coc.nvim                  module
+
+  dashboard-nvim            event
+
+  fidget.nvim               module
+
+  fzf-lua                   module
+
+  gitsigns.nvim             module
+
+  indent-blankline.nvim     module
+
+  lazy.nvim                 module
+
+  lualine.nvim              built-in
+
+  mason.nvim                module
+
+  mini.nvim                 module
+
+  neo-tree.nvim             module
+
+  noice.nvim                module
+
+  nvim-cmp                  module
+
+  nvim-navic                module
+
+  nvim-notify               module
+
+  nvim-tree.lua             module
+
+  nvim-treesitter           eager
+
+  nvim-ufo                  module
+
+  packer.nvim               module
+
+  rainbow-delimiters.nvim   module
+
+  renamer.nvim              module
+
+  nvim-scrollbar            module
+
+  snacks.nvim               module
+
+  telescope.nvim            module
+
+  toggleterm.nvim           module
+
+  vim-illuminate            module
+
+  which-key.nvim            module
+
+  wilder.nvim               module
+
+  Built-in LSP              eager
+  -----------------------------------------------------------------------
+
+LUALINE ~
+
+>lua
+    require("lualine").setup({
+      options = { theme = "aretha-dark" },
+    })
+<
+
+
+BARBECUE ~
+
+>lua
+    require("barbecue").setup({
+      theme = "aretha-dark",
+    })
+<
+
+
+LIGHTLINE ~
+
+>vim
+    let g:lightline = {'colorscheme': 'arethadark'}
+<
+
+
+NVCHAD ~
+
+aretha-dark.nvim can be integrated with NvChad
+<https://github.com/NvChad/NvChad>’s base46 theme system, enabling theme
+toggle functionality.
+
+**Step 1:** Create theme file in your NvChad config:
+
+>lua
+    -- lua/themes/aretha-dark.lua
+    return require("aretha-dark").nvchad()
+<
+
+**Step 2:** Update your `chadrc.lua`:
+
+>lua
+    M.base46 = {
+      theme = "aretha-dark",
+    }
+<
+
+**Step 3:** Ensure aretha-dark is installed (without loading the colorscheme):
+
+>lua
+    {
+      "nlavender/aretha-dark.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        require("aretha-dark").setup()
+        -- Don't call vim.cmd.colorscheme() - let NvChad handle it
+      end,
+    }
+<
+
+
+CUSTOMIZATION                                      *aretha-dark-customization*
+
+
+OVERRIDE HIGHLIGHTS ~
+
+>lua
+    require("aretha-dark").setup({
+      override = function(scheme)
+        return {
+          Normal = { bg = "#000000" },
+          IndentBlanklineChar = { fg = scheme.base.dimmed4 },
+        }
+      end,
+    })
+<
+
+
+CUSTOM PALETTE ~
+
+>lua
+    require("aretha-dark").setup({
+      override_palette = function(filter)
+        return {
+          dark2 = "#101014",
+          dark1 = "#16161E",
+          background = "#1A1B26",
+          text = "#C0CAF5",
+          accent1 = "#f7768e",
+          accent2 = "#7aa2f7",
+          accent3 = "#e0af68",
+          accent4 = "#9ece6a",
+          accent5 = "#0DB9D7",
+          accent6 = "#9d7cd8",
+          dimmed1 = "#737aa2",
+          dimmed2 = "#787c99",
+          dimmed3 = "#363b54",
+          dimmed4 = "#363b54",
+          dimmed5 = "#16161e",
+        }
+      end,
+    })
+<
+
+
+CUSTOM SCHEME ~
+
+>lua
+    require("aretha-dark").setup({
+      override_scheme = function(scheme, palette, colors)
+        return {
+          editor = {
+            background = colors.blend(palette.background, 0.75, "#000000"),
+          },
+        }
+      end,
+    })
+<
+
+
+COMMANDS                                                *aretha-dark-commands*
+
+  -----------------------------------------------------------------------
+  Command                       Description
+  ----------------------------- -----------------------------------------
+  :ArethaDark                   Reload the Aretha Dark colorscheme
+  -----------------------------------------------------------------------
+
+PALETTE REFERENCE                              *aretha-dark-palette-reference*
+
+>lua
+    base = {
+      dark = "#162239",      -- darker background
+      black = "#17243D",     -- sidebar
+      red = "#C74264",       -- accent1 (errors)
+      green = "#00AA7F",     -- accent4 (strings)
+      yellow = "#FFAA7F",    -- accent2 (types, orange)
+      blue = "#3DAEE9",      -- accent3 (primary)
+      magenta = "#B48EAD",   -- accent6 (keywords)
+      cyan = "#478ED5",      -- accent5 (functions)
+      white = "#D3DAE3",     -- text
+      dimmed1 = "#D3DAE3",
+      dimmed2 = "#BABABA",
+      dimmed3 = "#6E8898",   -- comments
+      dimmed4 = "#8898A6",
+      dimmed5 = "#192742",
+    }
+<
+
+
+LICENSE                                                  *aretha-dark-license*
+
+MIT
+
+==============================================================================
+1. Links                                                   *aretha-dark-links*
+
+Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+
+vim:tw=78:ts=8:noet:ft=help:norl:
