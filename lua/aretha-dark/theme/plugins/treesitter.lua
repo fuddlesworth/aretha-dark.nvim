@@ -37,7 +37,7 @@ return {
 
       -- Functions & Methods (#478ED5 blue)
       ["@function"]                         = { fg = base.cyan },
-      ["@function.builtin"]                 = { fg = base.red },
+      ["@function.builtin"]                 = { fg = base.cyan },
       ["@function.call"]                    = { fg = base.cyan },
       ["@function.macro"]                   = { fg = base.cyan },
       ["@function.method"]                  = { fg = base.cyan },
@@ -51,7 +51,7 @@ return {
       ["@keyword.directive"]                = { fg = base.red },
       ["@keyword.directive.define"]         = { fg = base.red },
       ["@keyword.exception"]                = { fg = base.red },
-      ["@keyword.function"]                 = { fg = base.cyan, italic = true },
+      ["@keyword.function"]                 = { fg = base.red, italic = true },
       ["@keyword.import"]                   = { fg = base.magenta },
       ["@keyword.operator"]                 = { fg = base.blue },
       ["@keyword.repeat"]                   = { fg = base.red },
@@ -67,14 +67,14 @@ return {
       -- Parameters & Variables (#D3DAE3 white)
       ["@variable"]                         = { fg = base.white },
       ["@variable.builtin"]                 = { fg = base.red, italic = true },
-      ["@variable.member"]                  = { fg = base.white },
+      ["@variable.member"]                  = { fg = property },
       ["@variable.parameter"]               = { fg = base.white, italic = styles.parameter and styles.parameter.italic },
       ["@variable.parameter.builtin"]       = { fg = base.white, italic = styles.parameter and styles.parameter.italic },
 
       -- Punctuation (#8898A6 gray)
-      ["@punctuation.bracket"]              = { fg = base.dimmed2 },
-      ["@punctuation.delimiter"]            = { fg = base.dimmed2 },
-      ["@punctuation.special"]              = { fg = base.dimmed2 },
+      ["@punctuation.bracket"]              = { fg = base.dimmed4 },
+      ["@punctuation.delimiter"]            = { fg = base.dimmed4 },
+      ["@punctuation.special"]              = { fg = base.dimmed4 },
 
       -- Strings & Characters (#00AA7F green, #D19A66 escape)
       ["@string"]                           = { fg = base.green },
@@ -102,15 +102,15 @@ return {
       ["@markup.link.label"]                = { fg = base.cyan, underline = true },
       ["@markup.link.label.symbol"]         = { fg = base.cyan, underline = true },
       ["@markup.link.url"]                  = { fg = base.cyan, underline = true },
-      ["@markup.list"]                      = { fg = base.white },
-      ["@markup.list.checked"]              = { fg = base.white },
-      ["@markup.list.markdown"]             = { fg = base.white },
-      ["@markup.list.unchecked"]            = { fg = base.white },
+      ["@markup.list"]                      = { fg = base.blue },
+      ["@markup.list.checked"]              = { fg = base.blue },
+      ["@markup.list.markdown"]             = { fg = base.blue },
+      ["@markup.list.unchecked"]            = { fg = base.blue },
       ["@markup.math"]                      = { fg = base.yellow },
       ["@markup.raw"]                       = { fg = base.green },
       ["@markup.raw.markdown_inline"]       = { fg = base.green },
       ["@markup.strikethrough"]             = { fg = base.white, strikethrough = true },
-      ["@markup.strong"]                    = { fg = base.white, bold = true },
+      ["@markup.strong"]                    = { fg = base.yellow, bold = true },
       ["@markup.underline"]                 = { fg = base.white, underline = true },
 
       -- Types (#FFAA7F orange, #3DAEE9 interface)
@@ -156,23 +156,25 @@ return {
       ["@text.math.latex"]                  = { fg = base.magenta },
       ["@text.strong.latex"]                = { bold = true },
 
-      -- Language specific: Markdown
+      -- Language specific: Markdown (VSCode Aretha Dark)
       ["@conceal.markdown"]                 = { bg = base.black },
-      ["@markup.italic.markdown_inline"]    = { italic = true },
-      ["@markup.link.label.markdown_inline"]= { fg = base.red },
-      ["@markup.link.url.markdown_inline"]  = { fg = base.green, underline = true },
-      ["@markup.raw.block.markdown"]        = { bg = base.black },
-      ["@markup.raw.delimiter.markdown"]    = { bg = base.black, fg = base.dimmed2 },
-      ["@markup.strong.markdown_inline"]    = { bold = true },
+      ["@markup.italic.markdown_inline"]    = { fg = base.white, italic = true },
+      ["@markup.link.label.markdown_inline"]= { fg = base.cyan, underline = true },
+      ["@markup.link.url.markdown_inline"]  = { fg = base.cyan, underline = true },
+      ["@markup.raw.block.markdown"]        = { bg = base.black, fg = base.green },
+      ["@markup.raw.delimiter.markdown"]    = { bg = base.black, fg = base.dimmed3 },
+      ["@markup.strong.markdown_inline"]    = { fg = base.yellow, bold = true },
       ["@none.markdown"]                    = { bg = base.black },
-      ["@punctuation.special.markdown"]     = { fg = base.dimmed2 },
+      ["@punctuation.special.markdown"]     = { fg = base.dimmed3 },
       ["@text.emphasis.markdown_inline"]    = { fg = base.white, italic = true },
-      ["@text.literal.block.markdown"]      = { bg = c.editor.background },
-      ["@text.literal.markdown_inline"]     = { bg = base.dimmed4, fg = base.white },
-      ["@text.quote.markdown"]              = { bg = base.dimmed5, fg = base.white },
-      ["@text.reference.markdown_inline"]   = { fg = base.red },
-      ["@text.strong.markdown_inline"]      = { bold = true },
-      ["@text.uri.markdown_inline"]         = { fg = base.green, sp = base.green, underline = true },
+      ["@text.literal.block.markdown"]      = { bg = base.black, fg = base.green },
+      ["@text.literal.markdown_inline"]     = { fg = base.green },
+      ["@text.quote.markdown"]              = { fg = base.dimmed3, italic = true },
+      ["@text.reference.markdown_inline"]   = { fg = base.green },
+      ["@text.strong.markdown_inline"]      = { fg = base.yellow, bold = true },
+      ["@text.uri.markdown_inline"]         = { fg = base.cyan, sp = base.cyan, underline = true },
+      ["@markup.link.title.markdown_inline"]= { fg = base.green },
+      ["@markup.link.title.markdown"]       = { fg = base.green },
 
       -- Language specific: SCSS
       ["@function.scss"]                    = { fg = base.cyan },
@@ -186,8 +188,8 @@ return {
       ["@comment.documentation.lua"]        = { fg = base.cyan },
       ["@conditional.lua"]                  = { fg = base.red },
       ["@field.lua"]                        = { fg = base.white },
-      ["@function.builtin.lua"]             = { fg = base.cyan },
-      ["@keyword.function.lua"]             = { fg = base.red },
+      ["@function.builtin.lua"]             = { fg = base.cyan, italic = true },
+      ["@keyword.function.lua"]             = { fg = base.red, italic = true },
       ["@keyword.lua"]                      = { fg = base.magenta, italic = styles.keyword and styles.keyword.italic },
       ["@namespace.lua"]                    = { fg = base.red },
       ["@parameter.lua"]                    = { fg = base.white, italic = true },
@@ -200,10 +202,10 @@ return {
       ["@string.yaml"]                      = { fg = base.green },
     }
 
-    -- Add markdown heading highlights
+    -- Add markdown heading highlights (VSCode: headings #C74264, marker #6E8898)
     for i = 1, 9 do
-      highlights["@markup.heading." .. i .. ".markdown"] = { fg = base.red }
-      highlights["@markup.heading." .. i .. ".marker.markdown"] = { fg = base.dimmed2 }
+      highlights["@markup.heading." .. i .. ".markdown"] = { fg = base.red, bold = true }
+      highlights["@markup.heading." .. i .. ".marker.markdown"] = { fg = base.dimmed3 }
     end
 
     return highlights
